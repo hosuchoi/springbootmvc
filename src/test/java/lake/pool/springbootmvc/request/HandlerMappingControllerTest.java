@@ -1,4 +1,4 @@
-package lake.pool.springbootmvc.sample;
+package lake.pool.springbootmvc.request;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

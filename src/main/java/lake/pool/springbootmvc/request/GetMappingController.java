@@ -1,4 +1,4 @@
-package lake.pool.springbootmvc.sample;
+package lake.pool.springbootmvc.request;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
