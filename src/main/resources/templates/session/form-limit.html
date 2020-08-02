@@ -5,11 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/modelValidatedForm}" method="post" th:object="${event}" >
+<form action="#" th:action="@{/session/form/limit}" method="post" th:object="${multiEvent}" >
     <p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}"> Incorrect data</p>
-    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Incorrect data</p>
-    <input type="text" title="name" th:field="*{name}"/>
-    <input type="text" title="limit" th:field="*{limit}"/>
+    LIMIT : <input type="text" title="limit" th:field="*{limit}"/>
     <input type="submit" value="Create">
 </form>
 </body>

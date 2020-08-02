@@ -5,12 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/modelValidatedForm}" method="post" th:object="${event}" >
-    <p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}"> Incorrect data</p>
-    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> Incorrect data</p>
-    <input type="text" title="name" th:field="*{name}"/>
-    <input type="text" title="limit" th:field="*{limit}"/>
-    <input type="submit" value="Create">
+<!--<a th:href="@{/handdles/form">Create New Event</a>-->
+<div th:unless="${#lists.isEmpty(eventList)}">
+    <ul th:each="event: ${eventList}">
+        <P th:text="${event.name}">Event Name</P>
+    </ul>
+</div>
+
 </form>
 </body>
 </html>

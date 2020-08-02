@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -61,6 +65,32 @@ public class HanddlerControllerTest {
                 .andDo(print())
                 .andExpect(jsonPath("name").value("lake"));
 //                .andExpect(jsonPath("limit").value(3))
+
+    }
+
+    @Test
+    public void modelValided() throws Exception{
+        mockMvc.perform(post("/modelValidated?name=lake")
+                .param("limit", "-3"))
+                .andDo(print())
+                .andExpect(jsonPath("name").value("lake"));
+//                .andExpect(jsonPath("limit").value(3))
+        ;
+
+    }
+
+    @Test
+    public void eventsValidatedForm() throws Exception{
+        ResultActions result = mockMvc.perform(post("/modelValidatedForm")
+                .param("name", "lake")
+                .param("limit", "-3"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(model().hasErrors());
+
+        ModelAndView mav = result.andReturn().getModelAndView();
+        Map<String, Object> model = mav.getModel();
+        System.out.println("model.size() = " + model.size());
 
     }
 }
